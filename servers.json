@@ -1,0 +1,1 @@
+[{"name": "server1", "ip": "server1.example.com", "enabled": true, "password": "server1", "port": 47200, "abbv": "s1"}, {"name": "server2", "ip": "server2.example.com", "enabled": false, "password": "server2", "port": 47200, "abbv": "s2"}]

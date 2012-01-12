@@ -1,0 +1,37 @@
+PHP-based RCON scripts for Battlefield 3 PC servers
+
+This is a collection of scripts designed to manage BF3 dedicated servers using a web-based solution. They are designed to fit the needs of BFGoons servers (http://www.bfgoons.com), so they may need tweaking to meet your needs.
+
+The scripts require the PHP Sockets extension to be installed and allow socket connections to any port. For security and abuse reasons, most shared hosting solutions do not allow this. Local hosting or an Amazon EC2 instance may work.
+
+Included files:
+
+* servers.json (required) - required server information. See servers.json section below for more details.
+* rcon.funcs.php (required) - main script that implements the BF3 RCON protocol.
+* whitelist.funcs.php - whitelist-related functions. See whitelist section below for more details.
+* server-status.php - displays number of players per server for all servers.
+* whitelist-stats.php - displays number of server slots available, number of whitelisted players, and number of non-whitelisted players kicked
+* whitelist-kick.php - kicks non-whitelisted players from selected servers. See whitelist-kick.php section below for more details.
+
+Servers.json:
+An example servers.json is included in this repository. All fields are required.
+
+* Name (string) - name of server for output purposes.
+* IP (string) - address of BF3 dedicated server. Can be IP address or DNS name.
+* Enabled (boolean) - scripts will not communicate with server if set to false.
+* Password (string) - RCON password for server.
+* Port (integer) - RCON port for server.
+* Abbv (string) - shorthand reference for server for easier URL calling.
+
+Whitelist:
+Your whitelist can be either a local or remotely-hosted file. It must be formatted with valid EA Origin account names separated by spaces.
+
+Whitelist-kick.php:
+Script is called with arguments and will skip invalid arguments. A valid argument contains "server" and the Abbv attribute set in the JSON file. Valid examples:
+
+* whitelist-kick.php?server=s1
+* whitelist-kick.php?server1=s1&server2=s2
+* whitelist-kick.php?servers=s1&server1=s2 (technically valid, but hard to read and understand)
+* whitelist-kick.php?server=s1&player=unlucky (script ignores player argument)
+
+You can configure options like maximum players per server to kick, seconds between announcing kicks and performing kicks, and server-specific cooldown timer to prevent abuse of kick script. See comments in script for details. If there are more non-whitelisted players on a server than the maximum players to kick, the script will randomly select non-whitelisted players to kick.
