@@ -3,6 +3,7 @@
 // Configurable variables
 $jsonURL = 'servers.json';
 $whitelistURL = 'http://example.com/whitelist';
+$forceKickVerification = 'gKnVsgV7zHt2RbDt'; // random string that must be passed in order to bypass lastrun timer
 $secondsBeforeKick = 5; // time between kick announcement and kick commands
 $maxPlayersToKick = 3; // maximum # of non-whitelisted players to kick per server
 $cooldownSeconds = 180; // interval between successful kicks
@@ -29,6 +30,12 @@ foreach ($_GET as $key => $value) {
 
 if (empty($servers)) {
 	exit("Invalid argument(s) passed to script.\n");
+}
+
+// Set FORCE variable to true if valid string is passed to script
+$FORCEKICK = False;
+if (strcmp($_GET["force"], $forceKickVerification) === 0) {
+	$FORCEKICK = True;
 }
 
 unset($_GET);
@@ -137,7 +144,7 @@ foreach ($servers as $server) {
 			continue;
 		}
 		
-		if (whitelistKick_init($server->abbv, $cooldownSeconds)) {
+		if ($FORCE || whitelistKick_init($server->abbv, $cooldownSeconds)) {
 			
 			if (count($nonWhitelistedPlayers) > $maxPlayersToKick) {
 				$tempArray = array();
