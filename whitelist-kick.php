@@ -149,8 +149,7 @@ foreach ($servers as $server) {
 			if (count($nonWhitelistedPlayers) > $maxPlayersToKick) {
 				$tempArray = array();
 				for ($i = 0; $i < $maxPlayersToKick; $i++) {
-					$key = array_rand($Players);
-					array_push($tempArray, $Players[$key]);
+					array_push($tempArray, $nonWhitelistedPlayers[array_rand($nonWhitelistedPlayers)]);
 				}
 				$nonWhitelistedPlayers = $tempArray;
 				unset($tempArray);
