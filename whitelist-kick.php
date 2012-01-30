@@ -173,7 +173,7 @@ foreach ($servers as $server) {
 					echo "$server->name: trouble kicking $player: $response[1]\n";
 					continue;
 				} else
-					echo "$server->name: kicked $player.\n";
+					echo "$server->name: $player kicked.\n";
 				
 				$totalPlayersKicked++;
 				
