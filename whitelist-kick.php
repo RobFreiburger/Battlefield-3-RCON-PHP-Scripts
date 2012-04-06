@@ -155,7 +155,7 @@ foreach ($servers as $server) {
 				unset($tempArray);
 			}
 			
-			$response = rconCommand($socket, "admin.say 'Non-whitelisted player kick in $secondsBeforeKick seconds.' all");
+			$response = rconCommand($socket, "admin.yell 'Non-whitelisted player kick in $secondsBeforeKick seconds.' $secondsBeforeKick");
 			
 			if ($response[0] != 'OK') {
 				echo "$server->name: on whitelistKick: trouble announcing whitelistKick. Skipped.\n";
