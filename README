@@ -1,5 +1,7 @@
 PHP-based RCON scripts for Battlefield: Bad Company 2 PC servers
 
+NOTE: I am no longer maintaining this repository.
+
 This is a collection of scripts designed to manage BF:BC2 dedicated servers using a web-based solution. They are designed to fit the needs of BFGoons servers (http://www.bfgoons.com), so they may need tweaking to meet your needs.
 
 The scripts require the PHP Sockets extension to be installed and allow socket connections to any port. For security and abuse reasons, most shared hosting solutions do not allow this. Local hosting or an Amazon EC2 instance may work.
